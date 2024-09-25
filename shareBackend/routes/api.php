@@ -17,3 +17,17 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// Route API pour les users
+// Routes::controller(UserController::class)->group(function(){
+// Route::post('/users',[UserController::class,'store']);
+// });
+
+
+Route::controller(UserController::class)->group(function () {
+    Route::post('/users', 'store'); // Pour créer un utilisateur
+    Route::get('/users', 'index'); // Pour récupérer tous les utilisateurs
+    Route::get('/users/{id}', 'show'); // Pour récupérer un utilisateur spécifique
+    Route::put('/users/{id}', 'update'); // Pour mettre à jour un utilisateur
+    Route::delete('/users/{id}', 'destroy'); // Pour supprimer un utilisateur
+});
